@@ -1,0 +1,75 @@
+{
+    // **TypeScript configuration for Laravel 12 + Vue 3 + Inertia.js + Vite (frontend only).**
+    // Supports Vue SFCs (Composition API, no JSX/TSX), strict type-checking,
+    // integration with Inertia.js page props and Spatie Laravel Data types, optimized for Vite.
+
+    "compilerOptions": {
+        /* Target & Module Settings */
+        "target": "ESNext",                  // Target modern JS for Vite bundling (ESNext)
+        "module": "ESNext",                  // Use ESNext module system (Vite bundles ESM)
+        "moduleResolution": "Node",          // Resolve modules like Node (compatible with bundlers)
+        // "moduleResolution": "bundler",    // (Use "bundler" if using TS 5+ for bundler-optimized resolution)
+
+        /* Strict Type-Checking Options */
+        "strict": true,                      // Enable all strict type-checking (best practice)
+        "noUnusedLocals": true,             // Error on unused local variables to keep code clean
+        "noUnusedParameters": true,         // Error on unused function parameters
+        "noUncheckedIndexedAccess": true,// (Optional stricter checking for array/object element access)
+
+        /* Module transpilation for Vite */
+        "noEmit": true,                      // Don't emit JS (Vite will handle bundling)
+        "isolatedModules": true,             // Ensure each file can be transpiled in isolation (needed for Vite/ESBuild)
+        "verbatimModuleSyntax": true,        // Preserve module syntax (superset of isolatedModules) for Vite
+
+        /* Interop & Language Features */
+        "esModuleInterop": true,             // Enable smooth interoperability with CommonJS modules
+        "allowSyntheticDefaultImports": true,// Allow default imports from modules with no default export
+        "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased imports
+        "skipLibCheck": true,                // Skip type checking of declaration files for faster builds
+
+        /* DOM & ESNext Libraries */
+        "lib": ["DOM", "ESNext"],            // Include DOM and latest ECMAScript features in type checking
+
+        /* Vite and Vue Specific */
+        "types": ["vite/client"],            // Include Vite's types (e.g., import.meta.env)
+        // Note: Make sure you have a Vue shim declaration for .vue files.
+        // You can create a `d.ts` file (e.g., `shims-vue.d.ts` or `env.d.ts`) with:
+        // declare module '*.vue' { import { DefineComponent } from 'vue'; const component: DefineComponent<{}, {}, any>; export default component; }
+        // This allows TypeScript to recognize Vue SFC imports
+        "baseUrl": "./resources/",
+        "paths": {
+            "@components/*": [
+                "views/components/*"
+            ],
+            "@scripts/*": [
+                "scripts/*"
+            ],
+            "@types/*": [
+                "scripts/types/*"
+            ],
+            "@layouts/*": [
+                "views/layouts/*"
+            ],
+            "@pages/*": [
+                "views/pages/*"
+            ]
+        }
+    },
+    /* Include only frontend source files */
+    "include": [
+        "resources/scripts/**/*.ts",     // All TS files in the frontend resources (no backend .ts files included)
+        "resources/views/**/*.vue",    // Vue single-file components (Composition API SFCs)
+        "resources/scripts/**/*.d.ts"    // Type declarations (e.g., Inertia page props, Spatie generated types)
+    ],
+    "exclude": [
+        "node_modules",
+        "vendor",
+        "public",
+        "storage",
+        "bootstrap",
+        "routes",
+        "app",            // Exclude Laravel backend directories (no backend TS) for clarity
+        "tests"
+    ]
+}
+

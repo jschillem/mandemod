@@ -8,7 +8,7 @@ use SoloTerm\Solo\Themes;
 
 // Solo may not (should not!) exist in prod, so we have to
 // check here first to see if it's installed.
-if (!class_exists('\SoloTerm\Solo\Manager')) {
+if (! class_exists('\SoloTerm\Solo\Manager')) {
     return [
         //
     ];
@@ -46,16 +46,12 @@ return [
     |
     */
     'commands' => [
-        'About' => 'php artisan solo:about',
         'Logs' => EnhancedTailCommand::file(storage_path('logs/laravel.log')),
         'Vite' => 'npm run dev',
         'Make' => new MakeCommand,
-        // 'HTTP' => 'php artisan serve',
-
-        // Lazy commands do not automatically start when Solo starts.
+        'HTTP' => 'php artisan serve',
         'Dumps' => Command::from('php artisan solo:dumps')->lazy(),
         'Reverb' => Command::from('php artisan reverb:start --debug')->lazy(),
-        'Pint' => Command::from('./vendor/bin/pint --ansi')->lazy(),
         'Queue' => Command::from('php artisan queue:work')->lazy(),
         'Tests' => Command::from('php artisan test --colors=always')->withEnv(['APP_ENV' => 'testing'])->lazy(),
     ],
@@ -79,5 +75,5 @@ return [
      * the dumps. This is the address. You probably don't need to change
      * this unless the default is already taken for some reason.
      */
-    'dump_server_host' => env('SOLO_DUMP_SERVER_HOST', 'tcp://127.0.0.1:9984')
+    'dump_server_host' => env('SOLO_DUMP_SERVER_HOST', 'tcp://127.0.0.1:9984'),
 ];
