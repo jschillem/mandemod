@@ -17,7 +17,14 @@ class ManufacturerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->company(),
+            'website_url' => fake()->optional()->url(),
+            'logo' => fake()->optional()->imageUrl(
+                width: 200,
+                height: 200,
+                category: 'business',
+                randomize: true
+            ),
         ];
     }
 }

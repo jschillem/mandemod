@@ -2,9 +2,12 @@
 
 namespace App\Enums;
 
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
+
 /**
  * Enum representing the different Eurorack module formats.
  */
+#[TypeScript]
 enum ModuleFormat: string
 {
     /** 3U (Standard Eurorack) */
