@@ -26,6 +26,7 @@
         "allowSyntheticDefaultImports": true,// Allow default imports from modules with no default export
         "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased imports
         "skipLibCheck": true,                // Skip type checking of declaration files for faster builds
+        "resolveJsonModule": true,          // Allow importing JSON files as modules (useful for config files, etc.)
 
         /* DOM & ESNext Libraries */
         "lib": ["DOM", "ESNext"],            // Include DOM and latest ECMAScript features in type checking

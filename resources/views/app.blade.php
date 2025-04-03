@@ -8,7 +8,7 @@
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased w-full bg-stone-50">
+<body class="font-sans antialiased w-full bg-stone-50 selection:bg-red-500 selection:text-stone-50 text-stone-950">
     @inertia
 </body>
 

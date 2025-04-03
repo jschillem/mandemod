@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import LayoutMain from "@layouts/LayoutMain.vue";
 import { computed } from "vue";
+import { route } from "momentum-trail";
+import { Link } from "@inertiajs/vue3";
 
-let props = defineProps<App.Data.ErrorPageData>();
+let { status = 404 } = defineProps<App.Data.ErrorPageData>();
 
 const message = computed(() => {
     var temp = "Sorry, an error has occured.";
 
-    switch (props.status) {
+    switch (status) {
         case 403:
             temp = "Sorry, you are not authorized to access this page.";
             break;
@@ -30,20 +31,18 @@ const message = computed(() => {
 </script>
 
 <template>
-    <LayoutMain class="flex justify-center items-center">
-        <div
-            class="flex flex-col bg-stone-200 justify-center items-center w-fit px-8 py-2 rounded-sm mt-10 border-stone-300 border"
+    <div
+        class="flex flex-col bg-stone-200 justify-center items-center w-fit mx-auto px-8 py-2 rounded-sm border-stone-300 border"
+    >
+        <h2
+            class="text-6xl font-semibold tracking-tighter text-red-700 mt-6"
+            v-text="status"
+        />
+        <p class="text-stone-950" v-text="message" />
+        <Link
+            :href="route('home')"
+            class="text-stone-700 text-sm mt-2 mb-4 underline hover:text-red-700"
+            >Return to Home</Link
         >
-            <h2
-                class="text-6xl font-semibold tracking-tighter text-red-700 mt-6"
-                v-text="props.status"
-            />
-            <p class="text-stone-950" v-text="message" />
-            <a
-                href="/"
-                class="text-stone-700 text-sm mt-2 mb-4 underline hover:text-red-700"
-                >Return to Home</a
-            >
-        </div>
-    </LayoutMain>
+    </div>
 </template>
