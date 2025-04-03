@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import vue from "@vitejs/plugin-vue";
 import { watchAndRun } from "vite-plugin-watch-and-run";
+import { fileURLToPath } from "url";
 
 export default defineConfig({
     plugins: [
@@ -24,7 +25,18 @@ export default defineConfig({
                 run: "php artisan typescript:transform -qn",
             },
         ]),
-        vue(),
+        vue({
+            script: {
+                globalTypeFiles: [
+                    fileURLToPath(
+                        new URL(
+                            "./resources/scripts/types/generated.d.ts",
+                            import.meta.url,
+                        ),
+                    ),
+                ],
+            },
+        }),
     ],
     resolve: {
         alias: {
